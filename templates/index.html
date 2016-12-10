@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="zcmn-Hans">
+<head style="text-align: center>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<script src="{{url_for('static', filename='jquery.js')}}"></script>
+<script type=text/javascript>  
+var $SCRIPT_ROOT = {{request.script_root|tojson|safe}};  
+</script> 
+<script type="text/javascript">
+    $(function(){
+        $("#one").click(function()
+        {
+            var data={}
+            data['num']=$("#num").val()
+            $.post($SCRIPT_ROOT+'/search',data)
+        });
+    });
+</script>
+<title>index</title>
+</head>
+
+<body>
+<div class="info" style="text-align: center;">
+    <form method="post" action="/search">
+        部门号码<input type="text" name="number" id="num">
+        <button id="one" value="Submit">Submit</button>
+    </form>
+</div>
+</body>
+</html>

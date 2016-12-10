@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="zcmn-Hans">
+<head style="text-align: center>
+ <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+ <script src="{{url_for('static', filename='jquery.js')}}"></script>  
+ <script src="{{url_for('static', filename='jquery-ui.js')}}" ></script>
+ <script type=text/javascript>  
+    var $SCRIPT_ROOT = {{request.script_root|tojson|safe}};  
+ </script> 
+ <title>search</title>
+ <style type="text/css">
+ .ui-helper-hidden-accessible{
+    text-align: center;
+    margin-right: auto;
+    margin-left: auto;
+ }</style>
+</head>
+
+<body>
+    <div class="info" style="text-align: center;">
+        查询病名<input type="text" id="name_input" name="diseaseName"/>
+    </div>
+    <script type="text/javascript">
+    $(function(){
+        $("#name_input").autocomplete({
+            source:function(request,response){
+                $.ajax({
+                    url: $SCRIPT_ROOT+"/search",
+                    contentType: "application/json; charset=utf-8",  
+                    dataType: "json",
+                    data: {
+                        name: request.term
+                    },
+                    async: false,
+                    //调用后端查找数据库，返回obejct类型，value为字符串的数据，需要将字符串转成数组传至前端autocomplete插件
+                    success: function (data) {
+                        param=eval("("+data.matching_results+")");
+                        var i = 0;                
+                        newArray =new Array(param.length);
+                        for(i=0;i<param.length;i++){
+                            var newObject={label:param[i].value};
+                            console.log(param[i].value);
+                            newArray[i]=newObject;
+                        }
+                        response(newArray);
+                    }
+                });
+            },
+            minLength:2
+        })
+    })
+</script>
+</body>
+</html>

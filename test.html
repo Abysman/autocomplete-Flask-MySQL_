@@ -1,0 +1,50 @@
+<!-- <!DOCTYPE html>
+<html lang="zcmn-Hans">
+<head style="text-align: center>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<script type="text/javascript"  src="static/jquery.js"></script>  
+<script type="text/javascript"  src="static/jquery-ui.js" ></script>
+<script type="text/javascript">
+    $(function(){
+        $("#submit").autocomplete({
+            source:[ "Choice1", "Choice2","Fuxx"]
+        })
+    })
+    
+</script>
+<title>search</title>
+</head>
+<body>
+<form  method="POST" id="NUM">
+    <div class="infom">
+        部门号码<input type="text" name="number" id="num">
+        <input id="submit" type="submit" value="submit" />
+    </div>
+</form>
+
+
+</script>
+</body>
+</html> -->
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>autocomplete demo</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<script type="text/javascript"  src="static/jquery.js"></script>  
+<script type="text/javascript"  src="static/jquery-ui.js" ></script>
+</head>
+<body>
+ 
+<label for="autocomplete">Select a programming language: </label>
+<input id="autocomplete">
+ 
+<script>
+$( "#autocomplete" ).autocomplete({
+  source: [ "c++", "中文", "php", "coldfusion", "javascript", "asp", "ruby" ]
+});
+</script>
+ 
+</body>
+</html>
